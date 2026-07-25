@@ -394,7 +394,7 @@ def test_coupling_pair_is_frozen_model():
         count_b=6,
     )
     with pytest.raises(ValidationError):
-        p.support = 4  # frozen
+        p.__setattr__("support", 4)
 
 
 # --------------------------------------------------------------------------- #

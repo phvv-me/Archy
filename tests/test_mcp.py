@@ -187,6 +187,7 @@ def test_tool_result_conforms_to_output_schema(
 
     server = create_server()
     schema = {t.name: t.outputSchema for t in asyncio.run(server.list_tools())}[name]
+    assert schema is not None
     content, structured = asyncio.run(
         server.call_tool(name, {"path": str(acyclic_project), **extra_args})
     )

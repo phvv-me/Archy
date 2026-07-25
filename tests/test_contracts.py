@@ -267,7 +267,7 @@ def test_importlinter_use_case_entry_points_present() -> None:
 
 
 def test_importlinter_pinned_to_supported_minor() -> None:
-    """pyproject.toml pins import-linter to >=2.11,<2.12. Assert the
+    """pyproject.toml pins import-linter to >=2.13,<2.14. Assert the
     installed version stays inside that window so a CI environment that
     overrides the pin (and breaks the wrap) is caught here instead of
     in production."""
@@ -275,7 +275,7 @@ def test_importlinter_pinned_to_supported_minor() -> None:
 
     installed = version("import-linter")
     major_minor = ".".join(installed.split(".")[:2])
-    assert major_minor == "2.11", (
-        f"import-linter {installed} is outside the supported pin (2.11.x). "
+    assert major_minor == "2.13", (
+        f"import-linter {installed} is outside the supported pin (2.13.x). "
         "Update pyproject.toml and re-verify the wrap before bumping the pin."
     )

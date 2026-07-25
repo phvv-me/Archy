@@ -423,12 +423,12 @@ def test_group_by_topological_scc_labels_are_sequential():
 def test_dsm_models_are_frozen():
     cell = DSMCell(row=0, col=1, weight=1.0)
     with pytest.raises(ValidationError):
-        cell.row = 99  # type: ignore[misc]
+        cell.__setattr__("row", 99)
     group = DSMGroup(label="x", members=("a",))
     with pytest.raises(ValidationError):
-        group.label = "y"  # type: ignore[misc]
+        group.__setattr__("label", "y")
     dsm = DSM(
         ordering=("a",), groups=(group,), cells=(cell,), group_by="community", weight="imports"
     )
     with pytest.raises(ValidationError):
-        dsm.ordering = ()  # type: ignore[misc]
+        dsm.__setattr__("ordering", ())
